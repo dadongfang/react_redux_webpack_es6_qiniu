@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'src/js'),
     publicPath: 'js',
-    filename: 'bundle.js'
+    filename: 'bundle.[hash:8].js'
   },
   resolve: {
     extensions: ['', '.js', '.css', '.json']
