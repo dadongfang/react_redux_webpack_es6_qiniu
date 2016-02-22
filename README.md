@@ -1,6 +1,14 @@
 react es6 postcss webpack 种子项目
 =========
 
+操作命令
+-------
+
++ npm run build 生成开发环境代码
++ npm start 开发环境
++ npm start --production 生产环境
++ npm run pack 打包
+
 资料参考
 -------
 
