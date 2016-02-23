@@ -29,8 +29,10 @@
     "json-loader": "^0.5.4",
     "jsx-loader": "^0.13.2",
     "koa": "^1.1.2",
+    "koa-proxy": "^0.4.1",
     "koa-static": "^2.0.0",
     "koa-webpack-dev-middleware": "^1.1.0",
+    "koa-webpack-hot-middleware": "^1.0.3",
     "path": "^0.12.7",
     "postcss-loader": "^0.8.1",
     "postcss-mixins": "^4.0.0",
@@ -40,6 +42,8 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.7.1"
   }
 }

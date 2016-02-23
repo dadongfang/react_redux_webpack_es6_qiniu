@@ -19,7 +19,7 @@ var HelloWorld = React.createClass({
 ReactDom.render(
   React.createElement('HelloWorld', {
     name: "world"
-  }, 'test'),
+  }, 'test.0'),
   // <HelloWorld>hello,world!</HelloWorld>,
   document.getElementById('dongFang')
 );

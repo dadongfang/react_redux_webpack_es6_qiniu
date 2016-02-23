@@ -19,7 +19,10 @@ module.exports = function(options) {
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify("development"),
           '__DEV__': true
-        })
+        }),
+        // new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
       );
   	}else {
   		plugins.push(
@@ -51,7 +54,10 @@ module.exports = function(options) {
   }
 
   return {
-    entry: path.join(__dirname, rootDir.develop, '/js/main'),
+    entry: [
+      'webpack-hot-middleware/client',
+      path.join(__dirname, rootDir.develop, '/js/main')
+    ],
     output: {
       path: path.resolve(develop ? rootDir.develop + '/__build/' : rootDir.production),
       publicPath: develop ? 'http://localhost:' + port.develop + '/__build' : '',
@@ -60,7 +66,7 @@ module.exports = function(options) {
     resolve: {
       root: [process.cwd() + rootDir.develop, process.cwd() + '/node_modules'],
       alias: {
-        // js: path.join(__dirname, "src/scripts"),
+        // js: path.join(__dirname, "__build/js/"),
         // src: path.join(__dirname, "src/scripts"),
         // styles: path.join(__dirname, "src/styles"),
         // img: path.join(__dirname, "src/img")

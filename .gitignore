@@ -1,4 +1,7 @@
+*.log
+
 __build
-production
 src/__build
+production
+
 node_modules
