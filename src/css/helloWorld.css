@@ -4,7 +4,7 @@ body {
   #dongFang {
     width: 300px;
     height: 300px;
-    background: url(/img/DF.png) no-repeat center;
+    background: url(../img/DF.png) no-repeat center;
     border: solid 1px red;
     border-radius: 5px;
     display: flex;

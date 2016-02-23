@@ -1,48 +1,70 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var TransferPlugin= require('transfer-webpack-plugin');
+var CopyPlugin= require('copy-webpack-plugin');
+var AssetsPlugin = require('assets-webpack-plugin');
 var config = require('./config');
+var port = config.port;
+var rootDir = config.rootDir;
 
 module.exports = function(options) {
-  var debug = 'true';
+  var develop = 'true';
   var plugins = [
     // new ExtractTextPlugin("[name].css")
-    //把指定文件夹下的文件复制到指定的目录
-    new TransferPlugin([
-      {from: 'src'}
-    ])
   ];
   if(options) {
-    debug = options.node_env !== 'production';
-    if(!debug) {
-  		plugins.push(
-  			new webpack.DefinePlugin({
-  				"process.env": {
-  					NODE_ENV: JSON.stringify("production")
-  				}
-  			}),
-  			new webpack.NoErrorsPlugin()
-  		);
-  	}else {
+    develop = options.node_env !== 'production';
+    if(develop) {
       plugins.push(
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify("development"),
           '__DEV__': true
         })
       );
+  	}else {
+  		plugins.push(
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.DedupePlugin(),
+  			new webpack.DefinePlugin({
+  				"process.env": {
+  					NODE_ENV: JSON.stringify("production")
+  				}
+  			}),
+  			new webpack.NoErrorsPlugin(),
+        new AssetsPlugin({
+          filename: 'assetsMap.json',
+          path: path.join(__dirname, rootDir.develop, '__build'),
+          prettyPrint: true,
+          update: true,
+          processOutput: function(assets) {
+            return 'window.staticAssetsMap = ' + JSON.stringify(assets);
+          }
+        }),
+        //把指定文件夹下的文件复制到指定的目录
+        new CopyPlugin([
+          {from: rootDir.develop + '/index.html'},
+          {from: rootDir.develop + '/tmpl'},
+          {from: rootDir.develop + '/__build/assetsMap.json', to: '__build'}
+        ])
+  		);
     }
   }
 
   return {
-    entry: path.join(__dirname, '/src/js/main.js'),
+    entry: path.join(__dirname, rootDir.develop, '/js/main'),
     output: {
-      path: path.resolve(debug ? '__build' : 'production'),
-      filename: debug ? 'js/bundle.js' : 'js/[chunkhash:8].bundle.min.js',
-      publicPath: debug ? 'http://localhost:3005/__build' : 'http://localhost:3005/production'
+      path: path.resolve(develop ? rootDir.develop + '/__build/' : rootDir.production),
+      publicPath: develop ? 'http://localhost:' + port.develop + '/__build' : '',
+      filename: develop ? 'js/bundle.js' : 'js/[chunkhash:8].bundle.min.js'
     },
     resolve: {
-      root: [process.cwd() + '/src', process.cwd() + '/node_modules'],
+      root: [process.cwd() + rootDir.develop, process.cwd() + '/node_modules'],
+      alias: {
+        // js: path.join(__dirname, "src/scripts"),
+        // src: path.join(__dirname, "src/scripts"),
+        // styles: path.join(__dirname, "src/styles"),
+        // img: path.join(__dirname, "src/img")
+      },
       extensions: ['', '.js', '.css', '.json']
     },
     module: {

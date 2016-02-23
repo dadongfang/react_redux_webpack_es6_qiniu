@@ -18,3 +18,6 @@ react es6 postcss webpack 种子项目
 + webpack: http://zhidao.baidu.com/link?url=9uozVhdlh1X98-mscTyna_3W660UDYj6zNw-KH72RlNKaYtyzXpC13VatiCacdYdMysAwdVQTSNPY5ueVWPmBZT_enrqhFSBaTyQdOYgZWy
 + react: https://facebook.github.io/react/docs/tutorial.html
 + webpack: https://segmentfault.com/a/1190000002551952
++ https://www.npmjs.com/package/assets-webpack-plugin
++ http://webpack.github.io/docs/long-term-caching.html
++ https://segmentfault.com/a/1190000003985802

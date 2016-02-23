@@ -1,3 +1,4 @@
 __build
 production
+src/__build
 node_modules

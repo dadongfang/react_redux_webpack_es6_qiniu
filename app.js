@@ -10,19 +10,27 @@ var webpackConf = require('./webpack.config')({
   node_env: process.env.NODE_ENV
 });
 
+var config = require('./config');
+var port = config.port.develop;
+var rootDir = config.rootDir;
+
 var app = koa();
 
 // 开发环境和生产环境对应不同的目录
-var viewDir = debug ? '__build' : 'production';
+var viewDir = debug ? rootDir.develop : rootDir.production;
 console.log('view dir path: /' + viewDir + '/');
 
-app.use(webpackDevMiddleware(webpack(webpackConf), {
-  contentBase: webpackConf.output.path,
-  publicPath: webpackConf.output.publicPath,
-  hot: true,
-  stats: webpackConf.devServer.stats,
-  headers: { 'Access-Control-Allow-Origin': '*' }
-}));
+if(debug) {
+  app.use(webpackDevMiddleware(webpack(webpackConf), {
+    contentBase: webpackConf.output.path,
+    publicPath: webpackConf.output.publicPath,
+    hot: true,
+    stats: webpackConf.devServer.stats,
+    headers: { 'Access-Control-Allow-Origin': '*' }
+  }));
+}else {
+  port = config.port.production;
+}
 
 // 配置静态资源和入口文件
 app.use(server(path.resolve(__dirname, viewDir), {
@@ -31,6 +39,6 @@ app.use(server(path.resolve(__dirname, viewDir), {
 
 app = http.createServer(app.callback());
 
-app.listen(3005, '0.0.0.0', function() {
-  console.log('app listen port 3005 success.');
+app.listen(port, '0.0.0.0', function() {
+  console.log('app listen port ' + port + ' success.');
 });
