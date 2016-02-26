@@ -7,6 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = require('./config');
 var port = config.port;
 var rootDir = config.rootDir;
+var publicPath = '//' + config.qiniu.host + '/' + config.qiniu.pre_path + '/';
 
 // function getEntries(){
 //   var entrySrc = path.join(__dirname, rootDir.develop, '/js/components/');
@@ -98,7 +99,7 @@ module.exports = function(options) {
     entry: entries,
     output: {
       path: path.resolve(develop ? rootDir.build : rootDir.production),
-      publicPath: develop ? 'http://localhost:' + port.develop + '/__build/' : '',
+      publicPath: develop ? 'http://localhost:' + port.develop + '/__build/' : publicPath,
       filename: develop ? 'js/[name].js' : 'js/[hash:8].[name].min.js',
       chunkFilename: develop ? 'js/[name].chunk.js' : 'js/[chunkhash:8].[name].chunk.min.js'
     },
