@@ -2,17 +2,14 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 require('../../css/helloWorld');
-require.ensure(['./dialog'], function(require) {
-  //todo
-}, 'dialog');
 
-var HelloWorld = React.createClass({
-  displayName: 'HelloWorld',
+var dialog = React.createClass({
+  displayName: 'dialog',
   render: function() {
     return (
       React.createElement('div', {
-        className: "commentBox"
-      }, "Hello, {this.props.name}! I am a CommentBox.")
+        className: "dialogBox"
+      }, "Hello, {this.props.name}! I am a dialogBox.")
       // <div className='commentBox'>
       //   Hello, world! I am a CommentBox.
       // </div>
@@ -20,9 +17,9 @@ var HelloWorld = React.createClass({
   }
 });
 ReactDom.render(
-  React.createElement('HelloWorld', {
-    name: "world"
-  }, 'test..'),
+  React.createElement('dialog', {
+    name: "dialog"
+  }, 'dialog'),
   // <HelloWorld>hello,world!</HelloWorld>,
   document.getElementById('dongFang')
 );

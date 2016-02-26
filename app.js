@@ -23,7 +23,7 @@ var app = koa();
 
 // 开发环境和生产环境对应不同的目录
 var viewDir = debug ? rootDir.develop : rootDir.production;
-console.log('view dir path: /' + viewDir + '/');
+console.log('view dir path: /' + viewDir);
 
 if(debug) {
   app.use(koaWebpackDevMiddleware(compiler, {
@@ -37,7 +37,11 @@ if(debug) {
     },
     noInfo: false
   }));
-  app.use(koaWebpackHotMiddleware(compiler));
+  app.use(koaWebpackHotMiddleware(compiler, {
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
+  }));
 
   // app.use(webpackDevMiddleware(compiler, {
   //   noInfo: true,
@@ -45,6 +49,14 @@ if(debug) {
   // }));
   //
   // app.use(webpackHotMiddleware(compiler));
+  // app.use(function* (next) {
+  //   yield webpackHotMiddleware(compiler, {
+  //     log: console.log,
+  //     path: '/__webpack_hmr',
+  //     heartbeat: 10 * 1000
+  //   }).bind(null, this.req, this.res);
+  //   yield next;
+  // });
 
   // app.use(proxy({
   //   url: 'js/',
