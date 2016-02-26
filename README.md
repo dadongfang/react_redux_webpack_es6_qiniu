@@ -7,7 +7,9 @@ react es6 postcss webpack 种子项目
 + npm run build 生成开发环境代码
 + npm start 开发环境
 + npm start --production 生产环境
-+ npm run pack 打包
++ npm run release 打包到生产环境
++ npm run qiniu 上传生产环境文件到七牛云
++ npm run qiniu_list 查看七牛云文件列表
 
 资料参考
 -------
