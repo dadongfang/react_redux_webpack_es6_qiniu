@@ -32,7 +32,6 @@ module.exports = function(options) {
   var entries = {
     // 'webpack-hot-middleware/client?http://0.0.0.0:3000',
     // 'webpack/hot/only-dev-server',
-    button: path.join(__dirname, rootDir.develop, '/js/components/button'),
     main: path.join(__dirname, rootDir.develop, '/js/main')
   };
   var chunks = Object.keys(entries);
@@ -93,7 +92,6 @@ module.exports = function(options) {
     // entry: {
     //   // 'webpack-hot-middleware/client?http://0.0.0.0:3000',
     //   // 'webpack/hot/only-dev-server',
-    //   button: path.join(__dirname, rootDir.develop, '/js/components/button'),
     //   main: path.join(__dirname, rootDir.develop, '/js/main')
     // },
     entry: entries,
