@@ -1,6 +1,6 @@
 import React from 'react'
 
-require('../../css/helloWorld')
+// require('../../css/helloWorld')
 
 class FreeService extends React.Component{
   render() {

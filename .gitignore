@@ -2,5 +2,6 @@
 
 src/__build
 production
+doc
 
 node_modules

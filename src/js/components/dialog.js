@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-require('../../css/helloWorld');
+// require('../../css/helloWorld');
 
 var dialog = React.createClass({
   displayName: 'dialog',

@@ -6,6 +6,6 @@ import routerConfig from './router'
 console.log(routerConfig);
 
 render(
-  <Router history={browserHistory} routes={routerConfig} />,
+  <Router routes={routerConfig} />,//history={browserHistory} 
   document.getElementById('dongFang')
 );
