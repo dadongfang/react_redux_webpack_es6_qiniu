@@ -42,7 +42,12 @@ module.exports = function(options) {
       chunks: chunks,
       // Modules must be shared between all entries
       minChunks: chunks.length // 提取所有chunks共同依赖的模块
+    }),
+    new webpack.ProvidePlugin({
+      'global': 'global',
+      '$': 'zepto'
     })
+
   ];
 
   if(options) {
@@ -104,6 +109,8 @@ module.exports = function(options) {
     resolve: {
       root: [process.cwd() + rootDir.develop, process.cwd() + '/node_modules'],
       alias: {
+        global: path.resolve(__dirname, "./src/js/global"),
+        zepto: path.resolve(__dirname, "./node_modules/zepto/zepto.min"),
         // js: path.join(__dirname, "__build/js/"),
         // src: path.join(__dirname, "src/scripts"),
         // styles: path.join(__dirname, "src/styles"),

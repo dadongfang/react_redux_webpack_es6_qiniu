@@ -8,7 +8,7 @@ module.exports = {
   rootDir: {
     develop: 'src/',
     build: 'src/__build/',
-    production: 'production/'
+    production: 'release/'
   },
   qiniu: {
     host: '7xq22v.com2.z0.glb.qiniucdn.com',

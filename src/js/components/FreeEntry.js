@@ -1,20 +1,29 @@
 import React from 'react'
-import {Link} from 'react-router'
+import { Link } from 'react-router'
 
-// require('../../css/helloWorld')
+require('../../css/FreeEntry')
+import AppDownload from './AppDownload/'
 // require.ensure(['./dialog'], function(require) {
 //   //todo
 // }, 'dialog');
 
-class FreeEntry extends React.Component{
+class FreeEntry extends React.Component {
   render() {
     return (
-      <div className='commentBox'>
-        Hello, world! I am a CommentBox.
-        <Link to='/free'>freeservice</Link>
+      <div className='freeEntry'>
+        <img src='../img/freeService_01.jpg' />
+        <img src='../img/freeService_02.jpg' />
+        <div className='posRelative floatL'>
+          <img src='../img/freeService_03.jpg' />
+          <span className='freeButton'>
+            <Link to='/free' className='block_a'>&nbsp;</Link>
+          </span>
+        </div>
+        <AppDownload />
+        <div className='clear'></div>
       </div>
     )
   }
 }
-console.log('hi');
+
 module.exports = FreeEntry
