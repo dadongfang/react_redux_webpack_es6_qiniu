@@ -1,3 +1,7 @@
+#cont {
+  background: url('../img/bg.jpg') repeat-y;
+  background-size: contain;
+}
 .freeEntry {
   img {
     float: left;

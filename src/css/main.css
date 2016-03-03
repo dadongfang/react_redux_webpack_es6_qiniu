@@ -1,7 +1,14 @@
+html {
+  height: 100%;
+}
 body {
   padding: 0;
   margin: 0 auto;
   max-width: 640px;
+  height: 100%;
+  #cont {
+    min-height: 100%;
+  }
   a {
     text-decoration: none;
   }

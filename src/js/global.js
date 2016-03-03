@@ -12,10 +12,6 @@ if (source && source == 'h5') {
   device = 'app';
 }
 
-if (device == 'h5') {
-  $('.bottom').show();
-}
-
 var ApiUrl = 'http://api.boqii.com';
 if (BQ.isDevelopment()) {
   ApiUrl = 'http://api-dev.boqii.com/api';
@@ -33,30 +29,6 @@ if (/micromessenger/i.test(ua)) {
   isWeixin = true;
   source = device = 'h5';
 }
-
-var shareInAPP = function (title, content, image) {
-  if (isIphone || ipad) {
-    var t = document.createElement('input');
-    t.style.display = 'none';
-    t.value = title;
-    t.id = 'shareTitle';
-    var c = document.createElement('input');
-    c.style.display = 'none';
-    c.value = content;
-    c.id = 'shareContent';
-    var i = document.createElement('input');
-    i.style.display = 'none';
-    i.value = image;
-    i.id = 'shareImage';
-    document.body.appendChild(t);
-    document.body.appendChild(c);
-    document.body.appendChild(i);
-  }else if (isAndroid) {
-    if(typeof Boqii != 'undefined') {
-      Boqii.setParams(title, content, image)
-    }
-  }
-};
 
 var token = "comboqiiwwwvetapp";
 function sortByAscendingKeys(obj) {

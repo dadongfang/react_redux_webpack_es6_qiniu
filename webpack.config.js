@@ -45,8 +45,9 @@ module.exports = function(options) {
       minChunks: chunks.length // 提取所有chunks共同依赖的模块
     }),
     new webpack.ProvidePlugin({
-      global: 'global',
-      $: 'webpack-zepto'
+      'global': 'global',
+      // 'window.global': 'global',
+      '$': 'webpack-zepto'
     }),
     //把指定文件夹下的文件复制到指定的目录
     new CopyPlugin([

@@ -40,7 +40,7 @@ $.ajax({
 
 function weixin_config(wx_config){
   wx.config({
-    debug: false,
+    debug: true,
     appId: wx_config.appId,
     timestamp: wx_config.timestamp,
     nonceStr: wx_config.nonceStr,
@@ -66,15 +66,7 @@ var callback = function() {
 }
 
 //APP内部分享调用
-global.shareInAPP(share_title, share_description, share_img)
-//APP内部分享回调
-var shareResults = function (id, ifs, channel) {
-  if(ifs) {
-    // callback()
-  } else{
-    alert("分享失败") 
-  }  
-};
+shareInAPP(share_title, share_description, share_img)
 
 wx.ready(function () {
   // 在这里调用 API

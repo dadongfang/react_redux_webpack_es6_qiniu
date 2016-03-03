@@ -2,12 +2,14 @@ import React from 'react';
 
 require('./css/');
 
+const device = global.device
 class AppDownload extends React.Component {
   constructor() {
     super()
     this.hide = this.hide.bind(this)
+
     this.state = {
-      display: 'block'
+      display: device == 'h5' ? 'block' : 'none'
     }
   }
   hide() {
@@ -17,7 +19,6 @@ class AppDownload extends React.Component {
   }
   download() {
     //统计点击量
-    const device = global.device
     const ApiUrl = global.ApiUrl
     const signParams = global.signParams
 

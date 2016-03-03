@@ -1,8 +1,3 @@
-<!-- <?php
-  require_once("/webwww/htmlfive/apps/activity/weixin_share_sdk/jssdk.php");
-  $jssdk = new JSSDK("wxb5d575673dbec527","1adfba8b47f15a15dcb413270df4fdd5");
-  $signPackage = $jssdk->GetSignPackage();
-?> -->
 <!doctype html>
 <html>
   <head>
@@ -22,6 +17,52 @@
     <script src="__build/js/vendor.js"></script>
     <script src="http://s.boqii.com/static/js/common.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+    <script>
+      // var isIphone = global.isIphone
+      // var ipad = global.ipad
+      // var isAndroid = global.isAndroid
+      // var device = global.device
+      var source = BQ.GetQueryString("source"),
+        device = '';
+
+      if (source && source == 'h5') {
+        device = 'h5';
+      } else {
+        device = 'app';
+      }
+
+      var ua = navigator.userAgent;
+      var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+        isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
+        isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+        isMobile = isIphone || isAndroid;
+
+      window.shareInAPP = function (title, content, image) {
+        if(device == 'app') {
+          if (isIphone || ipad) {
+            var t = document.createElement('input');
+            t.style.display = 'none';
+            t.value = title;
+            t.id = 'shareTitle';
+            var c = document.createElement('input');
+            c.style.display = 'none';
+            c.value = content;
+            c.id = 'shareContent';
+            var i = document.createElement('input');
+            i.style.display = 'none';
+            i.value = image;
+            i.id = 'shareImage';
+            document.body.appendChild(t);
+            document.body.appendChild(c);
+            document.body.appendChild(i);
+          }else if (isAndroid) {
+              Boqii.setParams(title, content, image)
+              alert(JSON.stringify(Boqii))
+          }
+        }
+      };
+    </script>
     <script src="__build/js/main.js"></script>
     <!-- <script type="text/javascript">
        wx.config({
