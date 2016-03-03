@@ -52,7 +52,9 @@ var shareInAPP = function (title, content, image) {
     document.body.appendChild(c);
     document.body.appendChild(i);
   }else if (isAndroid) {
-    Boqii ? Boqii.setParams(title, content, image) : '';
+    if(typeof Boqii != 'undefined') {
+      Boqii.setParams(title, content, image)
+    }
   }
 };
 
