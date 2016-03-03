@@ -7,17 +7,19 @@ class FreeService extends React.Component {
     super()
     this.goService = this.goService.bind(this)
     this.goShare = this.goShare.bind(this)
+
+    const isWeixin = global.isWeixin
     this.state = {
-      wechat: false,
+      wechat: isWeixin,
       showShareHint: 'none'
     }
   }
   goService() {
-    const device = global.default.device
-    const isIphone = global.default.isIphone
-    const ipad = global.default.ipad
-    const isAndroid = global.default.isAndroid
-    
+    const device = global.device
+    const isIphone = global.isIphone
+    const ipad = global.ipad
+    const isAndroid = global.isAndroid
+
     if (device == 'h5') {
       window.location.href = 'http://v.boqii.com/merchants/1/a//o/?cityId=3201';
     } else {
@@ -42,34 +44,34 @@ class FreeService extends React.Component {
   render() {
     return (
       <div className='freeService'>
-        <img src='../img/freeService_05.jpg' />
-        <img src='../img/freeService_06.jpg' />
-        <img src='../img/freeService_07.jpg' />
+        <img src={require('../../img/freeService_05.jpg')} />
+        <img src={require('../../img/freeService_06.jpg')} />
+        <img src={require('../../img/freeService_07.jpg')} />
         <div className='posRelative floatL'>
           {
             this.state.wechat ?
               <div>
-                <img src='../img/freeService_share.jpg' />
+                <img src={require('../../img/freeService_share.jpg')} />
                 <span className='goService' onClick={this.goService}>&nbsp;</span>
                 <span className='goShare' onClick={this.goShare}>&nbsp;</span>
               </div>
             :
               <div>
-                <img src='../img/freeService_noshare.jpg' />
+                <img src={require('../../img/freeService_noshare.jpg')} />
                 <span className='goService_noshare' onClick={this.goService}>&nbsp;</span>
               </div>
           }
         </div>
-        <img src='../img/freeService_08.jpg' />
-        <img src='../img/freeService_09.jpg' />
-        <img src='../img/freeService_10.jpg' />
-        <img src='../img/freeService_11.jpg' />
-        <img src='../img/freeService_12.jpg' />
-        <img src='../img/freeService_13.jpg' />
+        <img src={require('../../img/freeService_08.jpg')} />
+        <img src={require('../../img/freeService_09.jpg')} />
+        <img src={require('../../img/freeService_10.jpg')} />
+        <img src={require('../../img/freeService_11.jpg')} />
+        <img src={require('../../img/freeService_12.jpg')} />
+        <img src={require('../../img/freeService_13.jpg')} />
         <div className='clear'></div>
         <div className='shareHint' style={{display: this.state.showShareHint}}>
           <div className='posRelative'>
-            <img src='../img/share_hint.png' />
+            <img src={require('../../img/share_hint.png')} />
             <span className='close' onClick={this.goShare}>&nbsp;</span>
           </div>
         </div>

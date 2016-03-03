@@ -5,6 +5,12 @@ body {
   a {
     text-decoration: none;
   }
+  .defaultShareImg {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    font-size: 0;
+  }
   .posRelative {
     position: relative;
   }

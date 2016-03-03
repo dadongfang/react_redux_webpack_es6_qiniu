@@ -17,8 +17,9 @@ class AppDownload extends React.Component {
   }
   download() {
     //统计点击量
-    const ApiUrl = global.default.ApiUrl
-    const signParams = global.default.signParams
+    const device = global.device
+    const ApiUrl = global.ApiUrl
+    const signParams = global.signParams
 
     var params = {
       trackId: '56d68c9b2db23d2049e5a219',
@@ -27,13 +28,14 @@ class AppDownload extends React.Component {
       current: location.href,
       source: device.toUpperCase()
     };
+    const sign = signParams(params);
     $.ajax({
       url: ApiUrl + '/v1.1/insights/trackers',
       data: params,
       async: true,
       type: 'POST',
       beforeSend: function (xhr) {
-        xhr.setRequestHeader("Sign", signParams(params))
+        xhr.setRequestHeader("Sign", sign)
       },
       success: function (data) {
         //todo
@@ -46,7 +48,7 @@ class AppDownload extends React.Component {
     const Display = this.state.display;
     return (
       <div className='appDownload posRelative floatL' style={{display: Display}}>
-        <img src='/js/components/AppDownload/img/freeService_04.jpg' />
+        <img src={require('./img/freeService_04.jpg')} />
         <span className='close' onClick={this.hide}>&nbsp;</span>
         <span className='download' onClick={this.download}>&nbsp;</span>
       </div>

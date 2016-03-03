@@ -11,10 +11,10 @@ class FreeEntry extends React.Component {
   render() {
     return (
       <div className='freeEntry'>
-        <img src='../img/freeService_01.jpg' />
-        <img src='../img/freeService_02.jpg' />
+        <img src={require('../../img/freeService_01.jpg')} />
+        <img src={require('../../img/freeService_02.jpg')} />
         <div className='posRelative floatL'>
-          <img src='../img/freeService_03.jpg' />
+          <img src={require('../../img/freeService_03.jpg')} />
           <span className='freeButton'>
             <Link to='/free' className='block_a'>&nbsp;</Link>
           </span>

@@ -13,13 +13,14 @@ module.exports = {
   qiniu: {
     host: '7xq22v.com2.z0.glb.qiniucdn.com',
     bucket_name: 'h5-images',
-    pre_path: 'project/2016',
+    pre_path: 'h5-boqiishop/2016/boqiivet20160305',
     ACCESS_KEY: 'sYZeTVmmEEyVkWKeKf4sqnVlGNhIcAk_zGAEUqgO',
     SECRET_KEY: '_TLO3Huiv64jRIf_HRu5oE9DhnzQSflCByGMrn-Q',
-    dir: [
+    upload_dir: [
       'js/**/*.js',
       'css/**/*.css',
-      'img/**/*'
+      'img/**/*',
+      'static/**/*'
     ]
   }
 }

@@ -1,7 +1,7 @@
 // var scriptjs = require('scriptjs');
 // scriptjs('http://s.boqii.com/static/js/common.js', function (){
 // })
-import { hex_md5 } from 'md5'
+import md5 from 'md5'
 
 var source = BQ.GetQueryString("source"),
   device = '';
@@ -27,7 +27,14 @@ var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
   isAndroid = ua.match(/(Android)\s+([\d.]+)/),
   isMobile = isIphone || isAndroid;
 
-window.shareInAPP = function (title, content, image) {
+//判断是否在微信或者浏览器
+var isWeixin = false;
+if (/micromessenger/i.test(ua)) {
+  isWeixin = true;
+  source = device = 'h5';
+}
+
+var shareInAPP = function (title, content, image) {
   if (isIphone || ipad) {
     var t = document.createElement('input');
     t.style.display = 'none';
@@ -45,7 +52,7 @@ window.shareInAPP = function (title, content, image) {
     document.body.appendChild(c);
     document.body.appendChild(i);
   }else if (isAndroid) {
-    Boqii.setParams(title, content, image);
+    Boqii ? Boqii.setParams(title, content, image) : '';
   }
 };
 
@@ -91,10 +98,10 @@ function signParams(params) {
   }
   newParamsWithOrder = sortByAscendingKeys(params);
   stringToSign = "" + (joinValues(newParamsWithOrder)) + token;
-  return hex_md5(unescape(encodeURIComponent(stringToSign)));
+  return md5(unescape(encodeURIComponent(stringToSign)));
 }
 
-export default {
+module.exports = {
   source: source,
   device: device,
   ApiUrl: ApiUrl,
@@ -102,5 +109,7 @@ export default {
   isIphone: isIphone,
   isAndroid: isAndroid,
   isMobile: isMobile,
-  signParams: signParams
+  isWeixin: isWeixin,
+  signParams: signParams,
+  shareInAPP: shareInAPP
 }
