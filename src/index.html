@@ -10,6 +10,7 @@
     <title>宠物服务免单，3种行为任你选！</title>
   </head>
   <body>
+<<<<<<< HEAD
     <!-- IOS APP内部跳转 form -->
     <form id="forms" action=""></form>
     <div id="cont"></div>
@@ -17,6 +18,157 @@
     <script src="http://s.boqii.com/static/js/common.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="__build/js/main.js"></script>
+=======
+    <!-- IOS APP内部跳转 -->
+    <form id="forms" action=""></form>
+    <div id="cont"></div>
+    <script src="__build/js/common.js"></script>
+    <script src="__build/js/vendor.js"></script>
+    <script src="http://s.boqii.com/static/js/common.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+    <script>
+      // var isIphone = global.isIphone
+      // var ipad = global.ipad
+      // var isAndroid = global.isAndroid
+      // var device = global.device
+      var source = BQ.GetQueryString("source"),
+        device = '';
+
+      if (source && source == 'h5') {
+        device = 'h5';
+      } else {
+        device = 'app';
+      }
+
+      var ua = navigator.userAgent;
+      var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+        isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
+        isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+        isMobile = isIphone || isAndroid;
+
+      window.shareInAPP = function (title, content, image) {
+        if(device == 'app') {
+          if (isIphone || ipad) {
+            var t = document.createElement('input');
+            t.style.display = 'none';
+            t.value = title;
+            t.id = 'shareTitle';
+            var c = document.createElement('input');
+            c.style.display = 'none';
+            c.value = content;
+            c.id = 'shareContent';
+            var i = document.createElement('input');
+            i.style.display = 'none';
+            i.value = image;
+            i.id = 'shareImage';
+            document.body.appendChild(t);
+            document.body.appendChild(c);
+            document.body.appendChild(i);
+          }else if (isAndroid) {
+              Boqii.setParams(title, content, image)
+              alert(JSON.stringify(Boqii))
+          }
+        }
+      };
+    </script>
+    <script src="__build/js/main.js"></script>
+    <!-- <script type="text/javascript">
+       wx.config({
+         appId: '<?php echo $signPackage["appId"];?>',
+         timestamp: <?php echo $signPackage["timestamp"];?>,
+         nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+         signature: '<?php echo $signPackage["signature"];?>',
+         jsApiList: [
+           // 所有要调用的 API 都要加到这个列表中
+           "onMenuShareTimeline",
+           "onMenuShareAppMessage",
+           "onMenuShareQQ",
+           "onMenuShareWeibo",
+           "onMenuShareQZone"
+         ]
+       });
+
+       var share_title = '宠物服务免单，3种行为任你选！';
+       var share_description = '那种行为更刺激？保守行为，大胆行为，还是尝鲜行为。只要你敢玩，就敢免单。关注微信“波奇服务南京站”还可赢取超值大奖！';
+       var share_link = window.location.href;
+       var share_img = window.location.origin + '/activity/vet/boqiivet20160305/release/static/share.jpg';
+
+       var callback = function() {
+         $('.center').hide()
+         $('#shadow').hide()
+       }
+
+       //APP内部分享调用
+       shareInAPP(share_title, share_description, share_img)
+       //APP内部分享回调
+       shareResults = function (id, ifs, channel) {
+         if(ifs) {
+           callback()
+         } else{
+           alert("分享失败") 
+         }  
+       };
+
+       wx.ready(function () {
+        // 在这里调用 API
+        //======分享朋友圈===========
+        wx.onMenuShareTimeline({
+         title: share_title, // 分享标题
+         link: share_link, // 分享链接
+         imgUrl: share_img, // 分享图标
+         success: function () {
+           callback()
+         },
+         cancel: function () {}
+        });
+        //======分享给朋友===========
+        wx.onMenuShareAppMessage({
+         title: share_title, // 分享标题
+         desc: share_description, // 分享描述
+         link: share_link, // 分享链接
+         imgUrl: share_img, // 分享图标
+         success: function () {
+           callback()
+         },
+         cancel: function () {}
+        });
+        //======分享到QQ===========
+        wx.onMenuShareQQ({
+          title: share_title,
+          link: share_link,
+          imgUrl: share_img,
+          desc: share_description,
+          success: function() {
+            callback()
+          },
+          cancel: function () {}
+        });
+        //======分享到QQ空间===========
+        wx.onMenuShareQZone({
+          title: share_title,
+          link: share_link,
+          imgUrl: share_img,
+          desc: share_description,
+          success: function() {
+            callback()
+          },
+          cancel: function () {}
+        });
+        //======分享到新浪微博===========
+        wx.onMenuShareWeibo({
+          title: share_title,
+          link: share_link,
+          imgUrl: share_img,
+          desc: share_description,
+          success: function() {
+            callback()
+          },
+          cancel: function () {}
+        });
+       });
+    </script> -->
+>>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
     <script async src="http://s.boqii.com/static/js/ga.js"></script>
   </body>
 </html>

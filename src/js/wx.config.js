@@ -1,9 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
 import Auth from './lib/auth'
+<<<<<<< HEAD
 // const shareImg = require('../img/share.jpg')
 const shareImg = window.location.origin + '/activity/vet/boqiivet20160305/release/static/share.jpg'
 const shareImg_app = window.location.origin + '/activity/vet/boqiivet20160305/release/static/app_share.png?01'
+=======
+
+const shareImg = require('../img/share.jpg')
+>>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
 
 class ShareImg extends React.Component {
   render() {
@@ -23,6 +28,7 @@ render(
 var sdata = {
   url: location.href
 };
+<<<<<<< HEAD
 var sign = Auth.signParams(sdata);
 var ApiUrl = 'http://api.boqii.com';
 if (global.isDevelopment) {
@@ -43,12 +49,31 @@ $.ajax({
   },
   error: function(err) {
     alert('ajax error');
+=======
+
+$.ajax({
+  url: 'http://api-dev.boqii.com/weixin/js_config',
+  type: 'GET',
+  data: sdata,
+  async: false,
+  headers: {
+    'Sign': Auth.signParams(sdata),
+    'Authorization': '',
+    'Vary-Client': 'web'
+  },
+  success:function(data){
+    weixin_config(data.ResponseData);
+>>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
   }
 });
 
 function weixin_config(wx_config){
   wx.config({
+<<<<<<< HEAD
     debug: false,
+=======
+    debug: true,
+>>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
     appId: wx_config.appId,
     timestamp: wx_config.timestamp,
     nonceStr: wx_config.nonceStr,
@@ -68,14 +93,21 @@ var share_title = '宠物服务免单，3种行为任你选！';
 var share_description = '那种行为更刺激？保守行为，大胆行为，还是尝鲜行为。只要你敢玩，就敢免单。关注微信“波奇服务南京站”还可赢取超值大奖！';
 var share_link = window.location.href;
 var share_img = shareImg;
+<<<<<<< HEAD
 var share_img_app = shareImg_app;
+=======
+>>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
 
 var callback = function() {
   $('.shareHint').css('display', 'none')
 }
 
 //APP内部分享调用
+<<<<<<< HEAD
 global.shareInAPP(share_title, share_description, share_img_app)
+=======
+shareInAPP(share_title, share_description, share_img)
+>>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
 
 wx.ready(function () {
   // 在这里调用 API
