@@ -8,18 +8,19 @@ module.exports = {
   rootDir: {
     develop: 'src/',
     build: 'src/__build/',
-    production: 'production/'
+    production: 'release/'
   },
   qiniu: {
     host: '7xq22v.com2.z0.glb.qiniucdn.com',
     bucket_name: 'h5-images',
-    pre_path: 'project/2016',
+    pre_path: 'svnm/boqiivet20160305/production',
     ACCESS_KEY: 'sYZeTVmmEEyVkWKeKf4sqnVlGNhIcAk_zGAEUqgO',
     SECRET_KEY: '_TLO3Huiv64jRIf_HRu5oE9DhnzQSflCByGMrn-Q',
-    dir: [
+    upload_dir: [
       'js/**/*.js',
       'css/**/*.css',
-      'img/**/*'
+      'img/**/*',
+      'static/**/*'
     ]
   }
 }

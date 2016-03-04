@@ -23,7 +23,7 @@ var app = koa();
 
 // 开发环境和生产环境对应不同的目录
 var viewDir = debug ? rootDir.develop : rootDir.production;
-console.log('view dir path: /' + viewDir);
+console.log('view dir path: ' + viewDir);
 
 if(debug) {
   app.use(koaWebpackDevMiddleware(compiler, {
@@ -70,6 +70,10 @@ if(debug) {
 app.use(server(path.resolve(__dirname, viewDir), {
   maxage: 0
 }));
+
+// app.get('*', function (request, response){
+//   response.sendFile(path.resolve(__dirname, viewDir, 'index.html'));
+// })
 
 http.createServer(app.callback());
 

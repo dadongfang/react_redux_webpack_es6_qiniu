@@ -32,8 +32,8 @@ module.exports = function(options) {
   var entries = {
     // 'webpack-hot-middleware/client?http://0.0.0.0:3000',
     // 'webpack/hot/only-dev-server',
-    button: path.join(__dirname, rootDir.develop, '/js/components/button'),
-    main: path.join(__dirname, rootDir.develop, '/js/main')
+    main: path.join(__dirname, rootDir.develop, '/js/main'),
+    // vendor: ['webpack-zepto']
   };
   var chunks = Object.keys(entries);
   var plugins = [
@@ -43,7 +43,17 @@ module.exports = function(options) {
       chunks: chunks,
       // Modules must be shared between all entries
       minChunks: chunks.length // 提取所有chunks共同依赖的模块
-    })
+    }),
+    new webpack.ProvidePlugin({
+      global: 'global',
+      $: 'webpack-zepto'
+    }),
+    //把指定文件夹下的文件复制到指定的目录
+    new CopyPlugin([
+      // {from: rootDir.develop + '/index.html'},
+      {from: rootDir.develop + '/tmpl'},
+      {from: rootDir.develop + '/static', to: 'static'}
+    ])
   ];
 
   if(options) {
@@ -79,23 +89,12 @@ module.exports = function(options) {
               removeComments: true
           },
           // filename: filename
-        }),
-        //把指定文件夹下的文件复制到指定的目录
-        new CopyPlugin([
-          // {from: rootDir.develop + '/index.html'},
-          {from: rootDir.develop + '/tmpl'}
-        ])
+        })
   		);
     }
   }
 
   return {
-    // entry: {
-    //   // 'webpack-hot-middleware/client?http://0.0.0.0:3000',
-    //   // 'webpack/hot/only-dev-server',
-    //   button: path.join(__dirname, rootDir.develop, '/js/components/button'),
-    //   main: path.join(__dirname, rootDir.develop, '/js/main')
-    // },
     entry: entries,
     output: {
       path: path.resolve(develop ? rootDir.build : rootDir.production),
@@ -106,6 +105,7 @@ module.exports = function(options) {
     resolve: {
       root: [process.cwd() + rootDir.develop, process.cwd() + '/node_modules'],
       alias: {
+        global: path.resolve(__dirname, "./src/js/global"),
         // js: path.join(__dirname, "__build/js/"),
         // src: path.join(__dirname, "src/scripts"),
         // styles: path.join(__dirname, "src/styles"),

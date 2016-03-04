@@ -1,6 +1,7 @@
 *.log
 
 src/__build
-production
+release
+doc
 
 node_modules
