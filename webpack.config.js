@@ -33,11 +33,7 @@ module.exports = function(options) {
     // 'webpack-hot-middleware/client?http://0.0.0.0:3000',
     // 'webpack/hot/only-dev-server',
     main: path.join(__dirname, rootDir.develop, '/js/main'),
-<<<<<<< HEAD
     // vendor: ['webpack-zepto']
-=======
-    vendor: ['webpack-zepto']
->>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
   };
   var chunks = Object.keys(entries);
   var plugins = [
@@ -49,14 +45,8 @@ module.exports = function(options) {
       minChunks: chunks.length // 提取所有chunks共同依赖的模块
     }),
     new webpack.ProvidePlugin({
-<<<<<<< HEAD
       global: 'global',
       $: 'webpack-zepto'
-=======
-      'global': 'global',
-      // 'window.global': 'global',
-      '$': 'webpack-zepto'
->>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
     }),
     //把指定文件夹下的文件复制到指定的目录
     new CopyPlugin([

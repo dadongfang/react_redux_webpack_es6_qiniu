@@ -4,10 +4,7 @@
 import md5 from 'md5'
 
 var source = BQ.GetQueryString("source"),
-<<<<<<< HEAD
   isDevelopment = BQ.isDevelopment(),
-=======
->>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
   device = '';
 
 if (source && source == 'h5') {
@@ -17,11 +14,7 @@ if (source && source == 'h5') {
 }
 
 var ApiUrl = 'http://api.boqii.com';
-<<<<<<< HEAD
 if (isDevelopment) {
-=======
-if (BQ.isDevelopment()) {
->>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
   ApiUrl = 'http://api-dev.boqii.com/api';
 }
 
@@ -70,11 +63,7 @@ function joinValues(obj) {
   return values.join('');
 }
 
-<<<<<<< HEAD
 var signParams = function(params) {
-=======
-function signParams(params) {
->>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
   var newParamsWithOrder, stringToSign;
   if (params == null) {
     params = {};
@@ -87,7 +76,6 @@ function signParams(params) {
   return md5(unescape(encodeURIComponent(stringToSign)));
 }
 
-<<<<<<< HEAD
 var count = function(trackId) {
   var params = {
     trackId: trackId,
@@ -145,23 +133,13 @@ module.exports = {
   source: source,
   device: device,
   isDevelopment: isDevelopment,
-=======
-module.exports = {
-  source: source,
-  device: device,
->>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
   ApiUrl: ApiUrl,
   ipad: ipad,
   isIphone: isIphone,
   isAndroid: isAndroid,
   isMobile: isMobile,
   isWeixin: isWeixin,
-<<<<<<< HEAD
   shareInAPP: shareInAPP,
   signParams: signParams,
   count: count
-=======
-  signParams: signParams,
-  shareInAPP: shareInAPP
->>>>>>> e1864dfa9eb19668a89eeb86760f69c389b2e915
 }
