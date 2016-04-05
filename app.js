@@ -37,11 +37,7 @@ if(debug) {
     },
     noInfo: false
   }));
-  app.use(koaWebpackHotMiddleware(compiler, {
-    log: console.log,
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000
-  }));
+  app.use(koaWebpackHotMiddleware(compiler));
 
   // app.use(webpackDevMiddleware(compiler, {
   //   noInfo: true,
@@ -57,11 +53,6 @@ if(debug) {
   //   }).bind(null, this.req, this.res);
   //   yield next;
   // });
-
-  // app.use(proxy({
-  //   url: 'js/',
-  //   match: /^__build\/js\//
-  // }));
 }else {
   port = config.port.production;
 }

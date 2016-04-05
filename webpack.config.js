@@ -30,8 +30,7 @@ module.exports = function(options) {
   var develop = 'true';
   // var entries = getEntries();
   var entries = {
-    // 'webpack-hot-middleware/client?http://0.0.0.0:3000',
-    // 'webpack/hot/only-dev-server',
+    // 'webpack-hot-middleware/client',
     main: path.join(__dirname, rootDir.develop, '/js/main'),
     // vendor: ['webpack-zepto']
   };
