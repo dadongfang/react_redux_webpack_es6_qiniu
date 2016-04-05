@@ -1,22 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-require('../../css/FreeEntry')
+require('../../css/Home')
 import AppDownload from './AppDownload/'
-// require.ensure(['./dialog'], function(require) {
-//   //todo
-// }, 'dialog');
 
-class FreeEntry extends React.Component {
+class Home extends React.Component {
   render() {
     return (
-      <div className='freeEntry'>
-        <img src={require('../../img/freeService_01.jpg')} />
+      <div className='home'>
         <img src={require('../../img/freeService_02.jpg')} />
         <div className='posRelative floatL'>
           <img src={require('../../img/freeService_03.jpg')} />
           <span className='freeButton'>
-            <Link to='/free' className='block_a'>&nbsp;</Link>
+            <Link to='/another' className='block_a'>&nbsp;</Link>
           </span>
         </div>
         <AppDownload />
@@ -26,4 +22,4 @@ class FreeEntry extends React.Component {
   }
 }
 
-module.exports = FreeEntry
+module.exports = Home

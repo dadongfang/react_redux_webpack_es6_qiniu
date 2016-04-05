@@ -50,7 +50,6 @@ module.exports = function(options) {
     }),
     //把指定文件夹下的文件复制到指定的目录
     new CopyPlugin([
-      // {from: rootDir.develop + '/index.html'},
       {from: rootDir.develop + '/tmpl'},
       {from: rootDir.develop + '/static', to: 'static'}
     ])
@@ -131,9 +130,10 @@ module.exports = function(options) {
     },
     plugins: plugins,
     devServer: {
-      stats: {
-        cached: false
-      }
+      historyApiFallback: true,
+      hot: true,
+      inline: true,
+      progress: true
     }
   };
 };

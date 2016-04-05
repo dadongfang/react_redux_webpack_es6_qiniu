@@ -36,10 +36,8 @@ function qiniuList() {
     ret.items.forEach((item) => {
       console.log(item.key);
     });
-    // process ret.marker & ret.items
   } else {
     console.log(err)
-    // http://developer.qiniu.com/docs/v6/api/reference/rs/list.html
   }
 });
 }
@@ -82,19 +80,19 @@ function readFile(path, filesList)
  files.forEach(walk);
  function walk(file)
  {
-  states = fs.statSync(path+'/'+file);
+  states = fs.statSync(path + '/' + file);
   if(states.isDirectory())
   {
-   readFile(path+'/'+file, filesList);
+   readFile(path + '/' + file, filesList);
   }
   else
   {
-   if(checkFile(path+'/'+file)) {
+   if(checkFile(path + '/' + file)) {
     //创建一个对象保存信息
     var obj = new Object();
     obj.size = states.size;//文件大小，以字节为单位
     obj.name = file;//文件名
-    obj.path = path+'/'+file; //文件绝对路径
+    obj.path = path + '/' + file; //文件绝对路径
 
     filesList.push(obj);
    }
@@ -104,8 +102,6 @@ function readFile(path, filesList)
 
 // 正则验证文件是否匹配
 function checkFile(path) {
-  // var regexp_js = /(.*)\.js$/;
-  // var regexp_css = /(.*)\.css$/;
   var i = 0;
   var len = uploadDir.length;
   var url;
@@ -161,11 +157,9 @@ function uploadFile(localFile, key, uptoken) {
     if(!err) {
       // 上传成功， 处理返回值
       console.log('public_path: ' + path.join(host, ret.key), 'hash: ' + ret.hash);
-      // ret.key & ret.hash
     } else {
       // 上传失败， 处理返回代码
       console.log(err);
-      // http://developer.qiniu.com/docs/v6/api/reference/codes.html
     }
   });
 }

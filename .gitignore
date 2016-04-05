@@ -1,7 +1,3 @@
 *.log
 
-src/__build
-release
-doc
-
 node_modules

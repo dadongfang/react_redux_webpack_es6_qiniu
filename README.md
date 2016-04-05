@@ -1,6 +1,12 @@
 react es6 postcss webpack 种子项目
 =========
 
+项目介绍
+-------
+
++ 本项目使用koa搭建服务，前端react，react router，postcss，es6，babel等，webpack 和gulp配合打包构建，打包后的项目资源代码自动上传到七牛云
++ 提供快速搭建项目结构，自动化构建开发流程，自动化部署的单页面模块化应用
+
 操作命令
 -------
 
@@ -11,15 +17,15 @@ react es6 postcss webpack 种子项目
 + npm run qiniu 上传生产环境文件到七牛云
 + npm run qiniu_list 查看七牛云文件列表
 
-资料参考
+config配置详细
 -------
 
-+ webpack config: https://github.com/webpack/react-starter/blob/master/make-webpack-config.js
-+ webpack: http://zhidao.baidu.com/link?url=1fLB1UZEZ4CT1oi-7qvOuuw2PPwF-KlFGMibB0vjhh5YGQ6892vdNCsRTzhZeBRHLYQwMHGaNEPPkBFkvIOCXQlWpPozGazM_v13iUDkZj3
-+ 基于webpack搭建前端工程解决方案探索: https://segmentfault.com/a/1190000003499526
-+ webpack: http://zhidao.baidu.com/link?url=9uozVhdlh1X98-mscTyna_3W660UDYj6zNw-KH72RlNKaYtyzXpC13VatiCacdYdMysAwdVQTSNPY5ueVWPmBZT_enrqhFSBaTyQdOYgZWy
-+ react: https://facebook.github.io/react/docs/tutorial.html
-+ webpack: https://segmentfault.com/a/1190000002551952
-+ https://www.npmjs.com/package/assets-webpack-plugin
-+ http://webpack.github.io/docs/long-term-caching.html
-+ https://segmentfault.com/a/1190000003985802
++ port 开发环境、正式环境端口
++ rootDir 开发目录、编译目录，正式环境目录
++ qiniu qiniu相关配置
+    host: qiniu域名
+    bucket_name: 存放文件bucket
+    pre_path: 自定义文件路径
+    ACCESS_KEY: access_key
+    SECRET_KEY: secret_key
+    upload_dir: 上传到七牛云的正式环境下的目录集合，数组

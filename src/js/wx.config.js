@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Auth from './lib/auth'
 // const shareImg = require('../img/share.jpg')
 const shareImg = window.location.origin + '/activity/vet/boqiivet20160305/release/static/share.jpg'
 const shareImg_app = window.location.origin + '/activity/vet/boqiivet20160305/release/static/app_share.png?01'
@@ -19,30 +18,20 @@ render(
   document.getElementsByTagName('form')[0]
 )
 
-// var auth = new BoqiiAuth();
-var sdata = {
+var param = {
   url: location.href
 };
-var sign = Auth.signParams(sdata);
-var ApiUrl = 'http://api.boqii.com';
-if (global.isDevelopment) {
-  ApiUrl = 'http://api-dev.boqii.com';
-}
+var ApiUrl = '';
 $.ajax({
   url: ApiUrl + '/weixin/js_config',
   type: 'GET',
-  data: sdata,
+  data: param,
   async: true,
-  headers: {
-    'Sign': sign,
-    'Authorization': '',
-    'Vary-Client': 'web'
-  },
   success: function(data) {
     weixin_config(data.ResponseData);
   },
   error: function(err) {
-    alert('ajax error');
+    console.log('ajax error');
   }
 });
 
@@ -65,21 +54,13 @@ function weixin_config(wx_config){
 }
 
 var share_title = '宠物服务免单，3种行为任你选！';
-var share_description = '那种行为更刺激？保守行为，大胆行为，还是尝鲜行为。只要你敢玩，就敢免单。关注微信“波奇服务南京站”还可赢取超值大奖！';
+var share_description = '那种行为更刺激？保守行为，大胆行为，还是尝鲜行为。只要你敢玩，就敢免单。';
 var share_link = window.location.href;
 var share_img = shareImg;
 var share_img_app = shareImg_app;
 
 var callback = function() {
-  $('.shareHint').css('display', 'none')
-}
-
-//APP内部分享调用
-global.shareInAPP(share_title, share_description, share_img_app)
-const shareResults = function (id, ifs, channel){
-  if(ifs){
-    callback()
-  }
+  //todo
 }
 
 wx.ready(function () {

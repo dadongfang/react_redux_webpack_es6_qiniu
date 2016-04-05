@@ -2,7 +2,7 @@
   background: url('../img/bg.jpg') repeat-y;
   background-size: contain;
 }
-.freeEntry {
+.home {
   img {
     float: left;
     width: 100%;

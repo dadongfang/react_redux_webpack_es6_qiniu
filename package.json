@@ -19,7 +19,6 @@
     "koa-static": "^2.0.0",
     "koa-webpack-dev-middleware": "^1.1.0",
     "koa-webpack-hot-middleware": "^1.0.3",
-    "md5": "^2.0.0",
     "path": "^0.12.7",
     "webpack": "^1.12.14",
     "webpack-zepto": "0.0.1"

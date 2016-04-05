@@ -4,16 +4,16 @@ const routerConfig = [
 		path: '/',
 		getComponents(location, callback) {
 			require.ensure([], (require) => {
-				callback(null, require('./components/FreeEntry'))
-			}, 'FreeEntry')
+				callback(null, require('./components/Home'))
+			}, 'Home')
 		}
 	},
 	{
-		path: '/free',
+		path: '/another',
 		getComponents(location, callback) {
 			require.ensure([], (require) => {
-				callback(null, require('./components/FreeService'))
-			}, 'FreeService')
+				callback(null, require('./components/Another'))
+			}, 'Another')
 		}
 	}
 ]

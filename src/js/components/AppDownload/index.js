@@ -5,10 +5,8 @@ class AppDownload extends React.Component {
   constructor() {
     super()
     this.hide = this.hide.bind(this)
-
-    const device = global.device
     this.state = {
-      display: device == 'h5' ? 'block' : 'none'
+      display: 'block'
     }
   }
   hide() {
@@ -17,10 +15,7 @@ class AppDownload extends React.Component {
     })
   }
   download() {
-    //统计点击量
-    global.count('56d68c9b2db23d2049e5a219');
-
-    window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.boqii.petlifehouse&ckey=CK1323968426615';
+    alert('hello')
   }
   render() {
     const Display = this.state.display;
