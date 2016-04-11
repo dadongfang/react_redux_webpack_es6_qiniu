@@ -4,7 +4,7 @@ const routerConfig = [
 		path: '/',
 		getComponents(location, callback) {
 			require.ensure([], (require) => {
-				callback(null, require('./components/Home'))
+				callback(null, require('./containers/Home').default)
 			}, 'Home')
 		}
 	},
