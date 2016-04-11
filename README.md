@@ -1,10 +1,10 @@
-react es6 postcss webpack 种子项目
+react redux es6 postcss webpack 种子项目
 =========
 
 项目介绍
 -------
 
-+ 本项目使用koa搭建服务，前端react，react router，postcss，es6，babel等，webpack 和gulp配合打包构建，打包后的项目资源代码自动上传到七牛云
++ 本项目使用koa搭建服务，前端react，react router，redux, react-redux, postcss，es6，babel等，webpack 和gulp配合打包构建，打包后的项目资源代码自动上传到七牛云
 + 提供快速搭建项目结构，自动化构建开发流程，自动化部署的单页面模块化应用
 
 操作命令
