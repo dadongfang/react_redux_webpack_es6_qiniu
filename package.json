@@ -7,7 +7,7 @@
     "start": "node app",
     "build": "gulp clean:build & webpack --config webpack-develop.config.js --progress --profile --colors",
     "release": "gulp clean:production & webpack --config webpack-production.config.js -p -d --progress --profile --colors & npm run imagemin & npm run imagemin",
-    "imagemin": "cd web & gulp imagemin",
+    "imagemin": "gulp imagemin",
     "qiniu": "node qiniu",
     "qiniu_list": "node qiniu list",
     "test": "echo \"Error: no test specified\" && exit 1"
