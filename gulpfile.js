@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var webpack = require('webpack-stream');
 var del = require('del');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
 // var exec = require('gulp-exec');
 var exec = require('child_process').exec;
 var path = require('path');
@@ -43,3 +45,14 @@ gulp.task('release', ['clean:production'], function() {
     console.log(stderr);
   });
 });
+
+gulp.task('imagemin', () => {
+  return gulp.src(productionStr + 'img/*')
+    .pipe(imagemin({
+      progressive: true,
+			svgoPlugins: [{removeViewBox: false}],
+      optimizationLevel: 7,
+			use: [pngquant({quality: '65-80'})]
+    }))
+    .pipe(gulp.dest(productionStr + 'img'));
+})
