@@ -1,6 +1,11 @@
 react redux es6 postcss webpack 种子项目
 =========
 
+使用
+-------
+git clone 项目地址 --depth 1
+只克隆最后一次commit记录，否则项目很大
+
 项目介绍
 -------
 
