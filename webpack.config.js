@@ -28,6 +28,9 @@ var publicPath = '//' + config.qiniu.host + '/' + config.qiniu.pre_path + '/';
 
 module.exports = function(options) {
   var develop = 'true';
+  if(options && options.node_env == 'production') {
+    develop = false;
+  }
   // var entries = getEntries();
   var entries = {
     // 'webpack-hot-middleware/client',
@@ -51,45 +54,37 @@ module.exports = function(options) {
     new CopyPlugin([
       {from: rootDir.develop + '/tmpl'},
       {from: rootDir.develop + '/static', to: 'static'}
-    ])
+    ]),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify(develop ? 'development' : 'production')
+      }
+    }),
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(rootDir.develop, 'index_temp.html'),
+      minify: {
+          collapseWhitespace: true,
+          removeComments: true
+      },
+      filename: (develop ? '../' : '') + 'index.html'
+    })
   ];
 
-  if(options) {
-    develop = options.node_env !== 'production';
-    if(develop) {
-      plugins.push(
-        new webpack.DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify("development"),
-          '__DEV__': true
-        }),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        // new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-      );
-  	}else {
-  		plugins.push(
-        new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            warnings: false
-          }
-        }),
-        new webpack.optimize.DedupePlugin(),
-  			new webpack.DefinePlugin({
-  				"process.env": {
-  					NODE_ENV: JSON.stringify("production")
-  				}
-  			}),
-  			new webpack.NoErrorsPlugin(),
-        new HtmlWebpackPlugin({
-          template: path.resolve(rootDir.develop, 'index.html'),
-          minify: {
-              collapseWhitespace: true,
-              removeComments: true
-          },
-          // filename: filename
-        })
-  		);
-    }
+  if(develop) {
+    plugins.push(
+      new webpack.optimize.OccurrenceOrderPlugin()
+      // new webpack.HotModuleReplacementPlugin()
+    );
+	}else {
+		plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      }),
+      new webpack.optimize.DedupePlugin()
+		);
   }
 
   return {
@@ -109,7 +104,7 @@ module.exports = function(options) {
         // styles: path.join(__dirname, "src/styles"),
         // img: path.join(__dirname, "src/img")
       },
-      extensions: ['', '.js', '.css', '.json']
+      extensions: ['', '.js', '.css', '.json', '.html']
     },
     devtool: 'inline-source-map',
     module: {
