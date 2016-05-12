@@ -1,0 +1,18 @@
+#cont {
+  background: url('../img/bg.jpg') repeat-y;
+  background-size: contain;
+}
+.home {
+  img {
+    float: left;
+    width: 100%;
+  }
+  .freeButton {
+    width: 55%;
+    height: 29%;
+    display: inline-block;
+    position: absolute;
+    top: 63%;
+    left: 23%;
+  }
+}
