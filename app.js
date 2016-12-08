@@ -49,6 +49,20 @@ if(debug) {
 // 配置静态资源和入口文件
 app.use(express.static(path.resolve(__dirname, viewDir)));
 
+// prerender middleware
+var prerender = require('prerender-node').set('prerenderServiceUrl', 'http://localhost:3000/').set('beforeRender', function(req, done) {
+    console.log(req.url)
+    done()
+}).set('afterRender', function(err, req, prerender_res) {
+    console.log(req.url, prerender_res.body)
+})
+app.use(prerender);
+
+// This will ensure that all routing is handed over to react
+app.get('*', function(req, res) {
+  res.sendfile('./src/index.html');
+});
+
 app.listen(port, '0.0.0.0', function() {
   console.log('app listen port ' + port + ' success.');
 });

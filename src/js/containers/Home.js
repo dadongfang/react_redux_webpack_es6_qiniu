@@ -2,11 +2,14 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { appDownload } from '../actions/appDownload'
-import AppDownload from '../components/AppDownload/'
+import {AppDownload} from 'boqii-component'
+// const AppDownload = require('boqii-component/src/js/components/AppDownload')
+// import AppDownload from '../components/AppDownload/'
 require('../../css/Home')
 
 class Home extends React.Component {
   render() {
+    console.info(AppDownload)
     const { dispatch, showDownload } = this.props
     return (
       <div className='home'>

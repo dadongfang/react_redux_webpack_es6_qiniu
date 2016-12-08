@@ -106,7 +106,7 @@ module.exports = function(options) {
       },
       extensions: ['', '.js', '.css', '.json', '.html']
     },
-    devtool: 'inline-source-map',
+    devtool: 'cheap-module-eval-source-map',
     module: {
       loaders: [
         {test: /\.js[x]?$/, exclude: path.join(__dirname, '/node_modules/'), loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react']},

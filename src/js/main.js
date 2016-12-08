@@ -12,10 +12,7 @@ let store = createStore(reducers)
 
 render(
   <Provider store={store}>
-    <Router routes={routerConfig} />
-    {
-      // history={browserHistory}
-    }
+    <Router routes={routerConfig} history={browserHistory} />
   </Provider>,
   document.getElementById('cont')
 )

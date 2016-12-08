@@ -1,7 +1,7 @@
 module.exports = {
   port: {
-    develop: 3000,
-    production: 3001
+    develop: 8000,
+    production: 8001
   },
   rootDir: {
     develop: 'src/',
