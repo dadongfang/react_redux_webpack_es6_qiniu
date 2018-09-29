@@ -1,3 +1,6 @@
+.DS_Store
+.vscode
 *.log
-
+src/__build
+dist
 node_modules

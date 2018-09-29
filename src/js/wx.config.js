@@ -1,8 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
-// const shareImg = require('../img/share.jpg')
-const shareImg = window.location.origin + '/activity/vet/boqiivet20160305/release/static/share.jpg'
-const shareImg_app = window.location.origin + '/activity/vet/boqiivet20160305/release/static/app_share.png?01'
+const shareImg = require('../img/share.jpg')
+const shareImg_app = shareImg
+// const shareImg = window.location.origin + '/activity/20160305/release/static/share.jpg'
+// const shareImg_app = window.location.origin + '/activity/20160305/release/static/app_share.png?01'
 
 class ShareImg extends React.Component {
   render() {
@@ -27,15 +28,17 @@ $.ajax({
   type: 'GET',
   data: param,
   async: true,
-  success: function(data) {
-    weixin_config(data.ResponseData);
+  success: function (data) {
+    if(data.ResponseData) {
+      weixin_config(data.ResponseData);
+    }
   },
-  error: function(err) {
+  error: function (err) {
     console.log('ajax error');
   }
 });
 
-function weixin_config(wx_config){
+function weixin_config(wx_config) {
   wx.config({
     debug: false,
     appId: wx_config.appId,
@@ -53,13 +56,13 @@ function weixin_config(wx_config){
   });
 }
 
-var share_title = '宠物服务免单，3种行为任你选！';
+var share_title = '服务免单，3种行为任你选！';
 var share_description = '那种行为更刺激？保守行为，大胆行为，还是尝鲜行为。只要你敢玩，就敢免单。';
 var share_link = window.location.href;
 var share_img = shareImg;
 var share_img_app = shareImg_app;
 
-var callback = function() {
+var callback = function () {
   //todo
 }
 
@@ -73,7 +76,7 @@ wx.ready(function () {
     success: function () {
       callback()
     },
-    cancel: function () {}
+    cancel: function () { }
   });
   //======分享给朋友===========
   wx.onMenuShareAppMessage({
@@ -84,7 +87,7 @@ wx.ready(function () {
     success: function () {
       callback()
     },
-    cancel: function () {}
+    cancel: function () { }
   });
   //======分享到QQ===========
   wx.onMenuShareQQ({
@@ -92,10 +95,10 @@ wx.ready(function () {
     link: share_link,
     imgUrl: share_img,
     desc: share_description,
-    success: function() {
+    success: function () {
       callback()
     },
-    cancel: function () {}
+    cancel: function () { }
   });
   //======分享到QQ空间===========
   wx.onMenuShareQZone({
@@ -103,10 +106,10 @@ wx.ready(function () {
     link: share_link,
     imgUrl: share_img,
     desc: share_description,
-    success: function() {
+    success: function () {
       callback()
     },
-    cancel: function () {}
+    cancel: function () { }
   });
   //======分享到新浪微博===========
   wx.onMenuShareWeibo({
@@ -114,10 +117,10 @@ wx.ready(function () {
     link: share_link,
     imgUrl: share_img,
     desc: share_description,
-    success: function() {
+    success: function () {
       callback()
     },
-    cancel: function () {}
+    cancel: function () { }
   });
 });
 

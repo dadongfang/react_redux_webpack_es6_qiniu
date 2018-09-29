@@ -15,6 +15,7 @@ git clone 项目地址 --depth 1
 操作命令
 -------
 
++ npm run precompile 预编译第三方库依赖包
 + npm run build 生成开发环境代码
 + npm start 开发环境
 + npm start --production 生产环境
@@ -37,3 +38,6 @@ config配置详细
 
 说明
 -------
+
++ 先执行npm run precompile对一些固定不变的第三方依赖库预编译打包
++ npm start开发之前先执行npm run build命令
