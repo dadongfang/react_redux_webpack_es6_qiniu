@@ -1,0 +1,100 @@
+@import '~antd/lib/style/themes/default.less';
+
+#root {
+  background-color: #f0f2f5;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  a {
+    text-decoration: none;
+  }
+  ul {
+    padding: 0;
+    li {
+      list-style: none;
+    }
+  }
+  input {
+    outline: none;
+  }
+
+  .ant-layout.ant-layout-has-sider {
+    .ant-layout-sider .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+      .logo {
+        height: 64px;
+        position: relative;
+        line-height: 64px;
+        padding-left: (@menu-collapsed-width - 32px) / 2;
+        transition: all 0.3s;
+        background: #002140;
+        overflow: hidden;
+        img {
+          display: inline-block;
+          vertical-align: middle;
+          height: 32px;
+        }
+        h1 {
+          color: white;
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 20px;
+          margin: 0 0 0 12px;
+          font-weight: 600;
+        }
+      }
+      .menu {
+        // width: 256px;
+        flex: 1;
+        overflow-y: auto;
+      }
+    }
+    >.ant-layout {
+      .ant-layout-header {
+        padding: 0 12px 0 0;
+        background: #fff;
+        i.trigger {
+          font-size: 20px;
+          line-height: 64px;
+          cursor: pointer;
+          -webkit-transition: all .3s,padding 0s;
+          transition: all .3s,padding 0s;
+          padding: 0 24px;
+          &:hover {
+            background: #e6f7ff;
+          }
+        }
+        .right {
+          float: right;
+          height: 100%;
+          .account {
+            cursor: pointer;
+            padding: 0 12px;
+            display: inline-block;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+            height: 100%;
+            &:hover {
+              background: #e6f7ff;
+            }
+            .avatar {
+              margin: 20px 8px 20px 0;
+              color: #1890ff;
+              background: hsla(0,0%,100%,.85);
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+      .ant-layout-content {
+        margin: 24px 16px;
+        padding: 24px;
+        background: rgb(255, 255, 255);
+        min-height: 280px;
+        overflow: auto;
+      }
+    }
+  }
+}

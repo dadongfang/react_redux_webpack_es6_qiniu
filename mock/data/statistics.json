@@ -1,0 +1,227 @@
+{
+	"code": "SURVEY0000",
+	"message": "成功",
+	"surveyStatisticsList": [{
+			"questionTitle": "{\"blocks\":[{\"key\":\"a34m2\",\"text\":\"单选题\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+			"questionType": 0,
+			"optionStatisticsList": [{
+					"optionContent": "1",
+					"optionCount": 0,
+					"optionRatio":10
+				}, {
+					"optionContent": "2",
+					"optionCount": 1,
+					"optionRatio":20
+				}, {
+					"optionContent": "3",
+					"optionCount": 0,
+					"optionRatio":30
+				}, {
+					"optionContent": "4",
+					"optionCount": 0,
+					"optionRatio":40
+				}
+			]
+		}, {
+			"questionTitle": "{\"blocks\":[{\"key\":\"5tbcv\",\"text\":\"多选题\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+			"questionType": 1,
+			"optionStatisticsList": [{
+					"optionContent": "1",
+					"optionCount": 0,
+					"optionRatio":10
+				}, {
+					"optionContent": "2",
+					"optionCount": 1,
+					"optionRatio":20
+				}, {
+					"optionContent": "3",
+					"optionCount": 0,
+					"optionRatio":30
+				}, {
+					"optionContent": "4",
+					"optionCount": 0,
+					"optionRatio":40
+				}
+			]
+		}, {
+			"questionTitle": "{\"blocks\":[{\"key\":\"fldat\",\"text\":\"开放题\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+			"questionType": 2,
+			"optionStatisticsList": []
+		}, {
+			"questionTitle": "{\"blocks\":[{\"key\":\"1vpg1\",\"text\":\"量标题\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+			"questionType": 3,
+			"optionStatisticsList": [{
+					"optionContent": "1",
+					"optionCount": 0,
+					"optionRatio":40
+				}, {
+					"optionContent": "2",
+					"optionCount": 0,
+					"optionRatio":40
+				}, {
+					"optionContent": "3",
+					"optionCount": 0,
+					"optionRatio":40
+				}, {
+					"optionContent": "4",
+					"optionCount": 0,
+					"optionRatio":40
+				}, {
+					"optionContent": "5",
+					"optionCount": 0,
+					"optionRatio":40
+				}, {
+					"optionContent": "6",
+					"optionCount": 1,
+					"optionRatio":40
+				}, {
+					"optionContent": "7",
+					"optionCount": 0,
+					"optionRatio":40
+				}, {
+					"optionContent": "8",
+					"optionCount": 0,
+					"optionRatio":40
+				}, {
+					"optionContent": "9",
+					"optionCount": 0,
+					"optionRatio":40
+				}, {
+					"optionContent": "10",
+					"optionCount": 0,
+					"optionRatio":40
+				}, {
+					"optionContent": "11",
+					"optionCount": 0,
+					"optionRatio":40
+				}
+			]
+		}, {
+			"questionTitle": null,
+			"questionType": 4,
+			"optionStatisticsList": []
+		}, {
+			"questionTitle": "{\"blocks\":[{\"key\":\"ductj\",\"text\":\"排序题\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+			"questionType": 9,
+			"optionStatisticsList": [{
+					"optionContent": "1",
+					"optionCounts":[1,2,3,4,5],
+					"optionPercents": [50,40,30,20,10]
+				}, {
+					"optionContent": "1",
+					"optionCounts":[1,2,3,4,5],
+					"optionPercents": [50,40,30,20,10]
+				}, {
+					"optionContent": "1",
+					"optionCounts":[1,2,3,4,5],
+					"optionPercents": [50,40,30,20,10]
+				}, {
+					"optionContent": "1",
+					"optionCounts":[1,2,3,4,5],
+					"optionPercents": [50,40,30,20,10]
+				}, {
+					"optionContent": "1",
+					"optionCounts":[1,2,3,4,5],
+					"optionPercents": [50,40,30,20,10]
+				}
+			]
+		}, {
+			"questionTitle": "{\"blocks\":[{\"key\":\"99l3t\",\"text\":\"文本编辑\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+			"questionType": 5,
+			"optionStatisticsList": []
+		}, {
+			"questionTitle": "{\"blocks\":[{\"key\":\"csj0h\",\"text\":\"矩阵单选题\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+			"questionType": 6,
+			"optionStatisticsList": [{
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "1",
+					"colTitleList": ["a", "b", "c", "d", "e"],
+					"optionAnswerList": [0, 0, 1, 0, 0]
+				}, {
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "2",
+					"colTitleList": ["a", "b", "c", "d", "e"],
+					"optionAnswerList": [0, 1, 0, 0, 0]
+				}, {
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "3",
+					"colTitleList": ["a", "b", "c", "d", "e"],
+					"optionAnswerList": [0, 0, 1, 0, 0]
+				}, {
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "4",
+					"colTitleList": ["a", "b", "c", "d", "e"],
+					"optionAnswerList": [0, 0, 0, 1, 0]
+				}, {
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "5",
+					"colTitleList": ["a", "b", "c", "d", "e"],
+					"optionAnswerList": [0, 1, 0, 0, 0]
+				}
+			]
+		}, {
+			"questionTitle": "{\"blocks\":[{\"key\":\"cu7ng\",\"text\":\"矩阵多选题\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+			"questionType": 7,
+			"optionStatisticsList": [{
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "a",
+					"colTitleList": ["1", "2", "3", "4", "5"],
+					"optionAnswerList": [0, 0, 0, 1, 0]
+				}, {
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "b",
+					"colTitleList": ["1", "2", "3", "4", "5"],
+					"optionAnswerList": [0, 0, 1, 0, 0]
+				}, {
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "c",
+					"colTitleList": ["1", "2", "3", "4", "5"],
+					"optionAnswerList": [0, 1, 0, 0, 0]
+				}, {
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "d",
+					"colTitleList": ["1", "2", "3", "4", "5"],
+					"optionAnswerList": [0, 1, 0, 0, 0]
+				}, {
+					"optionContent": null,
+					"optionCount": null,
+					"rowTitle": "e",
+					"colTitleList": ["1", "2", "3", "4", "5"],
+					"optionAnswerList": [0, 0, 1, 0, 0]
+				}
+			]
+		}, {
+			"questionTitle": "{\"blocks\":[{\"key\":\"2btqq\",\"text\":\"您的最高学历为：\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+			"questionType": 0,
+			"optionStatisticsList": [{
+					"optionContent": "高中以下",
+					"optionCount": 0
+				}, {
+					"optionContent": "高中/中专",
+					"optionCount": 0
+				}, {
+					"optionContent": "大专",
+					"optionCount": 0
+				}, {
+					"optionContent": "本科",
+					"optionCount": 0
+				}, {
+					"optionContent": "研究生",
+					"optionCount": 1
+				}, {
+					"optionContent": "其他",
+					"optionCount": 0
+				}
+			]
+		}
+	]
+}
