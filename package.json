@@ -1,6 +1,6 @@
 {
   "name": "react-redux-es6-postcss-webpack",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "react & redux & es6 & postcss & webpack & gulp",
   "author": "dongfang",
   "scripts": {
