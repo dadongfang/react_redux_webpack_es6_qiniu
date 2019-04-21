@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-itunes-app" content="app-id=883476363">
     <title>spa</title>
+    <!-- 引入 manifest 文件 -->
+    <link rel="manifest" href="./manifest.json">
     <script type="text/javascript" src="/js/lib.js"></script>
     <script type="text/javascript" src="/js/storage.min.js"></script>
   </head>
@@ -15,6 +17,21 @@
     <!-- IOS APP内部跳转 form -->
     <form id="forms" action=""></form>
     <div id="root"></div>
+    <script>
+      // 进行 service-wroker 注册
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('./service-wroker.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
   </body>
 </html>

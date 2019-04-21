@@ -1,0 +1,22 @@
+{
+    "scope": "/",
+    "name": "react脚手架",
+    "short_name": "react脚手架",
+    "start_url": "/",
+    "display": "standalone",
+    "description": "react脚手架",
+    "orientation": "portrait",
+    "theme_color": "#3f51b5",
+    "background_color": "#fff",
+    "icons": [{
+      "src": "./static/screen32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "./static/screen144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+    ]
+}

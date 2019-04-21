@@ -7,6 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HappyPack = require('happypack');
 var os = require('os');
 var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+const WorkboxPlugin = require('workbox-webpack-plugin');
 // 包分析工具，使用方法启动命令后带--record参数
 // let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
@@ -53,7 +54,8 @@ module.exports = function ({node_env}) {
     new CopyPlugin([
       { from: rootDir.develop + '/js/lib.js', to: 'js' },
       { from: rootDir.develop + '/js/storage.min.js', to: 'js' },
-      { from: rootDir.develop + '/static', to: 'static' }
+      { from: rootDir.develop + '/static', to: 'static' },
+      { from: rootDir.develop + '/manifest.json', to: 'manifest.json' },
     ]),
     new HtmlWebpackPlugin({
       template: path.resolve(rootDir.develop, 'index_temp.html'),
@@ -82,6 +84,46 @@ module.exports = function ({node_env}) {
       manifest: require('./manifest.json')
     }),
     // new BundleAnalyzerPlugin()
+    /*
+      这里也可以使用 WorkboxPlugin.InjectManifest({}) 配置
+      但是需要 配置 swSrc 指明模板 service-worker 文件
+      WorkboxPlugin.GenerateSW({}) 可以直接生成 service-worker 文件
+    */
+    new WorkboxPlugin.GenerateSW({
+      cacheId: 'webpack-pwa', // 设置前缀
+      skipWaiting: true, // 强制等待中的 Service Worker 被激活
+      clientsClaim: true, // Service Worker 被激活后使其立即获得页面控制权
+      swDest: 'service-wroker.js', // 输出 Service worker 文件
+      globPatterns: ['**/*.{html,js,css,png,jpg,jpeg}'], // 匹配的文件
+      globIgnores: ['service-wroker.js'], // 忽略的文件
+      runtimeCaching: [
+        // 配置路由请求缓存
+        {
+          urlPattern: /.*\.(html|js|css|png|jpg|jpeg)/, // 静态资源
+          handler: 'CacheFirst', // 缓存优先
+          options: {
+            cacheName: 'aoyou-assets-cache',
+            expiration: { // 过期设置
+              // maxEntries: 5,
+              maxAgeSeconds: 7*2460*60,
+            }
+          }
+        },
+        // {
+        //   urlPattern: /.*\/api\/.*\/(cart|coupon)/, // 购物车接口
+        //   handler: 'NetworkFirst', // 网络优先
+        // },
+        {
+          urlPattern: /.*\.*/, // 其他
+          handler: 'StaleWhileRevalidate', // 先读缓存，再取网络
+          options: {
+            cacheableResponse: {
+              statuses: [200]
+            }
+          }
+        }
+      ]
+    })
   ];
 
   if (develop) {

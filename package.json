@@ -18,7 +18,8 @@
     "express": "^4.16.3",
     "path": "^0.12.7",
     "webpack": "^4.16.3",
-    "webpack-zepto": "0.0.1"
+    "webpack-zepto": "0.0.1",
+    "workbox-webpack-plugin": "^4.3.0"
   },
   "devDependencies": {
     "antd": "^3.9.2",
