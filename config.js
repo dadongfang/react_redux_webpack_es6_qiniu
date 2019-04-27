@@ -7,6 +7,7 @@ module.exports = {
   },
   rootDir: {
     develop: 'src/',
+    entry: 'src/entry/',
     build: 'src/__build/',
     production: 'dist/'
   },

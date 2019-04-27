@@ -1,6 +1,6 @@
 'use strict';
 import $ from 'webpack-zepto';
-require('./css/modules.less');
+require('../css/modules.less');
 
 function loadImage(currentImage){
   var oImage = new Image();

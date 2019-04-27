@@ -3,12 +3,12 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
-import request from './middlewares/request'
+import request from '../middlewares/request'
 import { createLogger } from 'redux-logger'
-import reducer from './reducers'
-import App from './containers/App'
+import reducer from '../reducers'
+import App from '../containers/App'
 
-import './css/index.less'
+import '../css/index.less'
 
 const middlewares = [ thunk, request ]
 

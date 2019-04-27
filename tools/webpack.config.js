@@ -19,7 +19,7 @@ var publicPath = '/';
 
 var ignoreFileList = ['router.js']
 function getEntries() {
-  var entrySrc = path.join(__dirname, '../', rootDir.develop);
+  var entrySrc = path.join(__dirname, '../', rootDir.entry);
   var files = fs.readdirSync(entrySrc);
 
   var regexp = /(.*)\.js$/;
@@ -38,7 +38,7 @@ function getEntries() {
 // 自动生成入口文件，入口js名必须和入口文件名相同
 // 例如，a页的入口文件是a.html，那么在js目录下必须有一个a.js作为入口文件
 function outputTemplate(develop, entries) {
-  var templateSrc = path.join(__dirname, '../', rootDir.develop);
+  var templateSrc = path.join(__dirname, '../', rootDir.entry);
   var pages = fs.readdirSync(templateSrc);
 
   var template = []
@@ -46,7 +46,8 @@ function outputTemplate(develop, entries) {
     var matchfile = filename.match(/(.+)\.html$/);
     if(matchfile && matchfile[1].indexOf('_temp') != -1) {
       // @see https://github.com/kangax/html-minifier
-      var outputFile = filename.split('_')[0] + '.html'
+      var outputName = filename.split('_')[0]
+      var outputFile = outputName + '.html'
       var conf = {
         template: path.resolve(templateSrc + filename),
         inject: 'body',
@@ -56,9 +57,9 @@ function outputTemplate(develop, entries) {
         },
         filename: (develop ? '../' : '') + outputFile
       };
-      if(matchfile[1] in entries) {
+      if(outputName in entries) {
         // 一下配置是把js和相关的html文件一一对应，如果不加此配置，就会把所有的js都注入到html中，显然多余
-        conf.chunks = ['common', matchfile[1]];
+        conf.chunks = ['common', outputName];
       }
 
       template.push(new HtmlWebpackPlugin(conf));
@@ -71,7 +72,7 @@ function outputTemplate(develop, entries) {
 module.exports = function ({node_env}) {
   var develop = node_env == 'development';
   var entries = spa ? {
-    main: [path.join(__dirname, '../', rootDir.develop, '/index.js')],
+    main: [path.join(__dirname, '../', rootDir.entry, '/index.js')],
   } : getEntries();
   // entries.vendor = ['webpack-zepto']
 
