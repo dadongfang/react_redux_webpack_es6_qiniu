@@ -1,4 +1,6 @@
 module.exports = {
+  pwa: true,
+  spa: true,
   port: {
     develop: 3000,
     production: 3001

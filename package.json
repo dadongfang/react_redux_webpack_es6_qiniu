@@ -1,7 +1,7 @@
 {
   "name": "react-redux-es6-postcss-webpack",
-  "version": "1.1.0",
-  "description": "react & redux & es6 & postcss & webpack & gulp",
+  "version": "1.2.0",
+  "description": "react & redux & es6 & postcss & webpack & gulp &pwa",
   "author": "dongfang",
   "scripts": {
     "precompile": "webpack --mode production --config tools/webpack.dll.js --progress --profile --colors",

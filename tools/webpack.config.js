@@ -1,50 +1,89 @@
 var path = require('path');
 var webpack = require('webpack');
-// var fs = require('fs');
+var fs = require('fs');
 // var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HappyPack = require('happypack');
 var os = require('os');
 var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
-const WorkboxPlugin = require('workbox-webpack-plugin');
 // 包分析工具，使用方法启动命令后带--record参数
 // let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 var config = require('../config');
-var port = config.port;
+var pwa = config.pwa;
+var spa = config.spa;
 var rootDir = config.rootDir;
 // var publicPath = '//' + config.qiniu.host + '/' + config.qiniu.pre_path + '/';
 var publicPath = '/';
 
-// function getEntries(){
-//   var entrySrc = path.join(__dirname, rootDir.develop, '/js/components/');
-//   var files = fs.readdirSync(entrySrc);
-//
-//   var regexp = /(.*)\.js$/;
-//   var map = {};
-//
-//   files.forEach((file)=>{
-//     var matchfile = file.match(regexp);
-//     if( matchfile ){
-//       map[matchfile[1]] = path.resolve(entrySrc + matchfile[0])
-//     }
-//   });
-//
-//   return map;
-// }
+var ignoreFileList = ['router.js']
+function getEntries() {
+  var entrySrc = path.join(__dirname, '../', rootDir.develop);
+  var files = fs.readdirSync(entrySrc);
+
+  var regexp = /(.*)\.js$/;
+  var entry = {};
+
+  files.forEach(filename=> {
+    var matchfile = filename.match(regexp);
+    if( matchfile && ignoreFileList.indexOf(filename) == -1 ) {
+      entry[matchfile[1]] = path.resolve(entrySrc + filename)
+    }
+  });
+
+  return entry;
+}
+
+// 自动生成入口文件，入口js名必须和入口文件名相同
+// 例如，a页的入口文件是a.html，那么在js目录下必须有一个a.js作为入口文件
+function outputTemplate(develop, entries) {
+  var templateSrc = path.join(__dirname, '../', rootDir.develop);
+  var pages = fs.readdirSync(templateSrc);
+
+  var template = []
+  pages.forEach(function(filename) {
+    var matchfile = filename.match(/(.+)\.html$/);
+    if(matchfile && matchfile[1].indexOf('_temp') != -1) {
+      // @see https://github.com/kangax/html-minifier
+      var outputFile = filename.split('_')[0] + '.html'
+      var conf = {
+        template: path.resolve(templateSrc + filename),
+        inject: 'body',
+        minify: {
+          collapseWhitespace: true,
+          removeComments: true
+        },
+        filename: (develop ? '../' : '') + outputFile
+      };
+      if(matchfile[1] in entries) {
+        // 一下配置是把js和相关的html文件一一对应，如果不加此配置，就会把所有的js都注入到html中，显然多余
+        conf.chunks = ['common', matchfile[1]];
+      }
+
+      template.push(new HtmlWebpackPlugin(conf));
+    }
+  });
+
+  return template;
+}
 
 module.exports = function ({node_env}) {
   var develop = node_env == 'development';
-  // var entries = getEntries();
-  var entries = {
+  var entries = spa ? {
     main: [path.join(__dirname, '../', rootDir.develop, '/index.js')],
-    // vendor: ['webpack-zepto']
-  };
-  if (develop) {
-    entries.main.unshift('webpack-hot-middleware/client?reload=true')
-  }
+  } : getEntries();
+  // entries.vendor = ['webpack-zepto']
+
   var chunks = Object.keys(entries);
+  if (develop) {
+    var i = 0
+    var len = chunks.length
+    for(i; i < len; i++) {
+      entries[chunks[i]].unshift('webpack-hot-middleware/client?reload=true')
+    }
+  }
+
   var plugins = [
     // new ExtractTextPlugin("[name].css")
     new webpack.ProvidePlugin({
@@ -57,14 +96,14 @@ module.exports = function ({node_env}) {
       { from: rootDir.develop + '/static', to: 'static' },
       { from: rootDir.develop + '/manifest.json', to: 'manifest.json' },
     ]),
-    new HtmlWebpackPlugin({
-      template: path.resolve(rootDir.develop, 'index_temp.html'),
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true
-      },
-      filename: (develop ? '../' : '') + 'index.html'
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: path.resolve(rootDir.develop, 'index_temp.html'),
+    //   minify: {
+    //     collapseWhitespace: true,
+    //     removeComments: true
+    //   },
+    //   filename: (develop ? '../' : '') + 'index.html'
+    // }),
     // 多进程方式实现webpack多线程执行任务
     new HappyPack({
       id: 'happyBabelJs', // 用id来标识happypack处理哪些文件
@@ -84,47 +123,55 @@ module.exports = function ({node_env}) {
       manifest: require('./manifest.json')
     }),
     // new BundleAnalyzerPlugin()
+  ];
+
+  plugins.push(...outputTemplate(develop, entries))
+
+  if(pwa) {
     /*
       这里也可以使用 WorkboxPlugin.InjectManifest({}) 配置
       但是需要 配置 swSrc 指明模板 service-worker 文件
       WorkboxPlugin.GenerateSW({}) 可以直接生成 service-worker 文件
     */
-    new WorkboxPlugin.GenerateSW({
-      cacheId: 'webpack-pwa', // 设置前缀
-      skipWaiting: true, // 强制等待中的 Service Worker 被激活
-      clientsClaim: true, // Service Worker 被激活后使其立即获得页面控制权
-      swDest: 'service-wroker.js', // 输出 Service worker 文件
-      globPatterns: ['**/*.{html,js,css,png,jpg,jpeg}'], // 匹配的文件
-      globIgnores: ['service-wroker.js'], // 忽略的文件
-      runtimeCaching: [
-        // 配置路由请求缓存
-        {
-          urlPattern: /.*\.(html|js|css|png|jpg|jpeg)/, // 静态资源
-          handler: 'CacheFirst', // 缓存优先
-          options: {
-            cacheName: 'aoyou-assets-cache',
-            expiration: { // 过期设置
-              // maxEntries: 5,
-              maxAgeSeconds: 7*2460*60,
-            }
-          }
-        },
-        // {
-        //   urlPattern: /.*\/api\/.*\/(cart|coupon)/, // 购物车接口
-        //   handler: 'NetworkFirst', // 网络优先
-        // },
-        {
-          urlPattern: /.*\.*/, // 其他
-          handler: 'StaleWhileRevalidate', // 先读缓存，再取网络
-          options: {
-            cacheableResponse: {
-              statuses: [200]
-            }
-          }
-        }
-      ]
-    })
-  ];
+    const WorkboxPlugin = require('workbox-webpack-plugin');
+    plugins.push(
+      new WorkboxPlugin.GenerateSW({
+        cacheId: 'webpack-pwa', // 设置前缀
+        skipWaiting: true, // 强制等待中的 Service Worker 被激活
+        clientsClaim: true, // Service Worker 被激活后使其立即获得页面控制权
+        swDest: 'service-wroker.js', // 输出 Service worker 文件
+        globPatterns: ['**/*.{html,js,css,png,jpg,jpeg,ico,json}'], // 匹配的文件
+        globIgnores: ['service-wroker.js'], // 忽略的文件
+        runtimeCaching: [
+          // 配置路由请求缓存
+          {
+            urlPattern: /.*\.(html|js|css|png|jpg|jpeg,ico,json)/, // 静态资源
+            handler: 'CacheFirst', // 缓存优先
+            // options: {
+            //   cacheName: 'webpack-assets-cache',
+            //   expiration: { // 过期设置
+            //     // maxEntries: 5,
+            //     maxAgeSeconds: 7*2460*60,
+            //   }
+            // }
+          },
+          // {
+          //   urlPattern: /.*\/api\/.*\/(cart|coupon)/, // 购物车接口
+          //   handler: 'NetworkFirst', // 网络优先
+          // },
+          // {
+          //   urlPattern: /.*\.*/, // 其他
+          //   handler: 'StaleWhileRevalidate', // 先读缓存，再取网络
+          //   options: {
+          //     cacheableResponse: {
+          //       statuses: [200]
+          //     }
+          //   }
+          // }
+        ]
+      })
+    )
+  }
 
   if (develop) {
     plugins.push(

@@ -1,4 +1,4 @@
-react redux es6 postcss webpack 种子项目
+react redux es6 postcss webpack 基础项目
 =========
 
 使用
@@ -11,6 +11,7 @@ git clone 项目地址 --depth 1
 
 + 本项目使用koa搭建服务，前端react，react router，redux, react-redux, postcss，es6，babel等，webpack 和gulp配合打包构建，打包后的项目资源代码自动上传到七牛云
 + 提供快速搭建项目结构，自动化构建开发流程，自动化部署的单页面模块化应用
++ 可自由配置pwa，是单页面应用or多页面应用
 
 操作命令
 -------
@@ -26,6 +27,8 @@ git clone 项目地址 --depth 1
 config配置详细
 -------
 
++ pwa 是否开启pwa
++ spa 是否为spa应用
 + port 开发环境、正式环境端口
 + rootDir 开发目录、编译目录，正式环境目录
 + qiniu qiniu相关配置

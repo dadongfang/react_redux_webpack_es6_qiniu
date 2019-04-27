@@ -1,1 +1,13 @@
-<!doctype html><html><head><meta charset="UTF-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="format-detection" content="telephone=no"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta name="apple-itunes-app" content="app-id=883476363"><title>spa</title><script type="text/javascript" src="/js/lib.js"></script><script type="text/javascript" src="/js/storage.min.js"></script></head><body><form id="forms" action=""></form><div id="root"></div><script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script><script type="text/javascript" src="/__build/js/common.chunk.js"></script><script type="text/javascript" src="/__build/js/main.js"></script></body></html>
+<!doctype html><html><head><meta charset="UTF-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="format-detection" content="telephone=no"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta name="apple-itunes-app" content="app-id=883476363"><title>spa</title><link rel="manifest" href="/manifest.json"><script type="text/javascript" src="/js/lib.js"></script><script type="text/javascript" src="/js/storage.min.js"></script></head><body><form id="forms" action=""></form><div id="root"></div><script>// 进行 service-wroker 注册
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/service-wroker.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }</script><script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script><script type="text/javascript" src="/__build/js/common.chunk.js"></script><script type="text/javascript" src="/__build/js/main.js"></script></body></html>

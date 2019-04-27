@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+/**图片懒加载部分代码**/
+#image-list .image-item {
+    /*width: 50%;*/
+    position: relative;
+    overflow: hidden;
+    background: #CCC url(../img/default.png) 50% no-repeat;
+}
+#image-list .image-item:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
+#image-list li{
+    float: left;
+    width: 49%;
+    margin-bottom: 6px;
+}
+#image-list li:nth-child(even){
+    float: right;
+}
+#image-list img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: 0.3;
+    transition: opacity .3s ease-in;
+    -webkit-transition: opacity .3s ease-in;
+}
+#image-list img.on {
+    opacity: 1;
+}

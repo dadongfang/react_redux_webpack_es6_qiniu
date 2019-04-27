@@ -9,7 +9,7 @@
     <meta name="apple-itunes-app" content="app-id=883476363">
     <title>spa</title>
     <!-- 引入 manifest 文件 -->
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <script type="text/javascript" src="/js/lib.js"></script>
     <script type="text/javascript" src="/js/storage.min.js"></script>
   </head>
@@ -22,7 +22,7 @@
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker
-            .register('./service-wroker.js')
+            .register('/service-wroker.js')
             .then(registration => {
               console.log('SW registered: ', registration);
             })
