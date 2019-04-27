@@ -28,7 +28,7 @@ function getEntries() {
   files.forEach(filename=> {
     var matchfile = filename.match(regexp);
     if( matchfile && ignoreFileList.indexOf(filename) == -1 ) {
-      entry[matchfile[1]] = path.resolve(entrySrc + filename)
+      entry[matchfile[1]] = [path.resolve(entrySrc + filename)]
     }
   });
 
