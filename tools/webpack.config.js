@@ -237,7 +237,7 @@ module.exports = function ({node_env}) {
         }
       }
     },
-    devtool: develop ? 'eval' : false,
+    devtool: develop ? 'eval' : 'hidden-source-map',
     devServer: {
       hot: true,
       inline: true,
