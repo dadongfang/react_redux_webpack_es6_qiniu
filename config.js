@@ -12,6 +12,7 @@ module.exports = {
     production: 'dist/'
   },
   qiniu: {
+    enable: true,
     host: 'host',
     bucket_name: 'bucket',
     pre_path: 'react_demo',

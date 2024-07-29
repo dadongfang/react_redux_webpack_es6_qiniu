@@ -14,8 +14,8 @@ var config = require('../config');
 var pwa = config.pwa;
 var spa = config.spa;
 var rootDir = config.rootDir;
-// var publicPath = '//' + config.qiniu.host + '/' + config.qiniu.pre_path + '/';
-var publicPath = '/';
+var qiniu = config.qiniu;
+var publicPath = qiniu.enable ? '//' + qiniu.host + '/' + qiniu.pre_path + '/' : '/';
 
 var ignoreFileList = ['router.js']
 function getEntries() {

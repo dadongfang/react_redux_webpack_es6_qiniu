@@ -3,7 +3,7 @@ react redux es6 postcss webpack 基础项目
 
 使用
 -------
-git clone 项目地址 --depth 1
+git clone 项目地址 --depth 1  
 只克隆最后一次commit记录，否则项目很大
 
 项目介绍
@@ -11,7 +11,7 @@ git clone 项目地址 --depth 1
 
 + 本项目使用koa搭建服务，前端react，react router，redux, react-redux, postcss，es6，babel等，webpack 和gulp配合打包构建，打包后的项目资源代码自动上传到七牛云
 + 提供快速搭建项目结构，自动化构建开发流程，自动化部署的单页面模块化应用
-+ 可自由配置pwa，是单页面应用or多页面应用
++ 可自由配置pwa，及单页面应用or多页面应用
 
 操作命令
 -------
@@ -31,12 +31,13 @@ config配置详细
 + spa 是否为spa应用
 + port 开发环境、正式环境端口
 + rootDir 开发目录、编译目录，正式环境目录
-+ qiniu qiniu相关配置
-    host: qiniu域名
-    bucket_name: 存放文件bucket
-    pre_path: 自定义文件路径
-    ACCESS_KEY: access_key
-    SECRET_KEY: secret_key
++ qiniu 七牛相关配置  
+    enable: 是否使用七牛云存储  
+    host: 七牛域名  
+    bucket_name: 存放文件bucket  
+    pre_path: 自定义文件路径  
+    ACCESS_KEY: access_key  
+    SECRET_KEY: secret_key  
     upload_dir: 上传到七牛云的正式环境下的目录集合，数组
 
 说明
